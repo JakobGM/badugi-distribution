@@ -1,5 +1,5 @@
 function handMatrix = getAllHands(numCards)
-% Takes in number of cards in one hand
+% Takes in number of cards in one hand and returns all permutations of hands
 
 % Combinatoric parameters
 n = factorial(52) / factorial(52 - numCards); % Amount of hands
