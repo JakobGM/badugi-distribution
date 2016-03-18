@@ -2,8 +2,9 @@ function [handMatrix, numHands] = getAllHandsWithoutPermutations(numCards)
 % Takes in number of cards in one hand and returns all permutations of hands
 
 % Combinatoric parameters
-n = factorial(52) / factorial(52 - numCards); % Amount of hands
 cardsInDeck = 52;
+n = factorial(cardsInDeck) / factorial(cardsInDeck - numCards); % Amount of permutations of hands
+
 
 % cardDeck(card, 1=rank and 2=suit)
 cardDeck = zeros(52,2);
@@ -19,8 +20,6 @@ for suit = 1:4
 end
 
 assert(cardCounter == (cardsInDeck+1))
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Matrix to sotre all hand permutations
 handNumMatrix = zeros(n, numCards);
@@ -55,10 +54,10 @@ assert(handCounter == (n+1))
 handNumMatrix = unique(sort(handNumMatrix, 2), 'rows');
 [numHands, ~] = size(handNumMatrix);
 
-handMatrix = zeros(n, numCards, 2);
+handMatrix = zeros(numHands, numCards, 2);
 for hand = 1:numHands
   for card = 1:numCards
-    handMatrix(hand, card, :) = cardDeck(handNumMatrix(hand, card));
+    handMatrix(hand, card, :) = cardDeck(handNumMatrix(hand, card), :);
   end
 end
 
