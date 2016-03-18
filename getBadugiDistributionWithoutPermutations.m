@@ -15,7 +15,7 @@ end
 % Prinitng the distribution to terminal
 for d = 1:numCards % degrees of badugi
   percent = 100*distribution(d)/n;
-  fprintf('Number of degree %i badugis: %i (%i%s)\n', d, distribution(d), percent, '%')
+  fprintf('Number of degree %i badugis: %i (%2.2f%s)\n', d, distribution(d), percent, '%')
 end
 
 end
