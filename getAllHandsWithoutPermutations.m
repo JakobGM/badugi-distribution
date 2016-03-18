@@ -22,34 +22,57 @@ end
 assert(cardCounter == (cardsInDeck+1))
 
 % Matrix to sotre all hand permutations
+global handNumMatrix
 handNumMatrix = zeros(n, numCards);
-handCounter = 1;
+% handCounter = 0;
 
-cardsLeft = 1:52;
-for card1 = cardsLeft
-  cardsLeft(cardsLeft == card1) = []; %Remove first card from cardDeck
-  for card2 = cardsLeft
-    cardsLeft(cardsLeft== card2) = []; %Remove second card from cardDeck
-    for card3 = cardsLeft
-      cardsLeft(cardsLeft == card3) = []; %Remove third card from cardDeck
-      for card4 = cardsLeft
+%%
+% handCounter = 0;
+% cardsLeft = 1:52;
+% cardCounter = 1;
+% global cardVector
+% cardVector = [];
+%
+% [cardsLeft handCounter] = numToHandMatrix(cardsLeft, handCounter, cardCounter, numCards);
+% assert(handCounter == n)
+%%
 
-        handNumMatrix(handCounter, 1) = card1;
-        handNumMatrix(handCounter, 2) = card2;
-        handNumMatrix(handCounter, 3) = card3;
-        handNumMatrix(handCounter, 4) = card4;
+%%%
+cardsLeft = 1:cardsInDeck;
+global handNumMatrix
+global cardVector
+global cardCounter
+global handCounter
+handNumMatrix = zeros(n, numCards);
+cardVector = zeros(1,numCards);
+cardCounter = 0;
+handCounter = 0;
+handNumMatrixGenerator(cardsLeft, numCards)
+%%%
 
-        handCounter = handCounter + 1;
+% cardsLeft = 1:52;
+% for card1 = cardsLeft
+%   cardsLeft(cardsLeft == card1) = []; %Remove first card from cardDeck
+%   for card2 = cardsLeft
+%     cardsLeft(cardsLeft== card2) = []; %Remove second card from cardDeck
+%     for card3 = cardsLeft
+%       cardsLeft(cardsLeft == card3) = []; %Remove third card from cardDeck
+%       for card4 = cardsLeft
+%         handNumMatrix(handCounter, 1) = card1;
+%         handNumMatrix(handCounter, 2) = card2;
+%         handNumMatrix(handCounter, 3) = card3;
+%         handNumMatrix(handCounter, 4) = card4;
+%
+%         handCounter = handCounter + 1;
+%       end
+%       cardsLeft = [cardsLeft card3]; %Put third card back again
+%     end
+%     cardsLeft = [cardsLeft card2]; %Put second card back again
+%   end
+%   cardsLeft = [cardsLeft card1]; %Put first card back again
+% end
 
-      end
-      cardsLeft = [cardsLeft card3]; %Put third card back again
-    end
-    cardsLeft = [cardsLeft card2]; %Put second card back again
-  end
-  cardsLeft = [cardsLeft card1]; %Put first card back again
-end
-
-assert(handCounter == (n+1))
+% assert(handCounter == (n+1))
 
 handNumMatrix = unique(sort(handNumMatrix, 2), 'rows');
 [numHands, ~] = size(handNumMatrix);
