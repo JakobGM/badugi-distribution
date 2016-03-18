@@ -17,6 +17,8 @@ for i = cardPerms'
   for i = 2:numCards
     if( (sum(ranks(1:(i-1)) == ranks(i)) + sum(suits(1:(i-1)) == suits(i))) == 0 )
       degreeTemp = degreeTemp + 1;
+    else
+      break;
     end
   end
 
